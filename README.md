@@ -192,11 +192,8 @@ For example, lets say our `ConstructionWorker` class had a lot of things to sort
 
 The same may be true for any of our private methods. `Supply` and `SoilAnalysis` classes could also be refactored out of `ConstructionWorker`. This type of refactoring is best accomplished using Test Driven Development, or TDD. TDD is a workflow that starts with writing a test, seeing it break, then writing the minimal code needed to get the test to pass. We will discuss TDD more in future lessons.
 
+## Resources
 
-Reference:
-
-[Wikipedia - Access Modifiers](https://en.wikipedia.org/wiki/Access_modifiers)
-
-[Declaring Visibility in Ruby Classes](https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes#Declaring_Visibility)
-
-[Ruby Protected Methods](http://nithinbekal.com/posts/ruby-protected-methods/)
+- [Wikipedia - Access Modifiers](https://en.wikipedia.org/wiki/Access_modifiers)
+- [Declaring Visibility in Ruby Classes](https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes#Declaring_Visibility)
+- [Ruby Protected Methods](http://nithinbekal.com/posts/ruby-protected-methods/)
