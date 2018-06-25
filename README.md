@@ -125,3 +125,4 @@ ContructionWorker.standard_wage #=> "$20/hour"
 Reference:
 
 [Wikipedia - Access Modifiers](https://en.wikipedia.org/wiki/Access_modifiers)
+[Declaring Visibility in Ruby Classes](https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes#Declaring_Visibility)
