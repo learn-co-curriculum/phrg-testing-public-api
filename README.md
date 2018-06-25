@@ -1,6 +1,12 @@
 # Access Modification
 
-"Access modification" is a fancy sounding term, but it is pretty literal in its definition. Wikipedia says "Access modifiers are keywords in object-oriented languages that set the accessibility of classes, methods, and other members. Access modifiers are a specific part of programming language syntax used to facilitate the encapsulation of components."
+"Access modification" is a fancy sounding term, but it is pretty literal in its definition. Wikipedia says:
+
+```
+"Access modifiers are keywords in object-oriented languages that set the accessibility of classes,
+methods, and other members. Access modifiers are a specific part of programming language syntax
+used to facilitate the encapsulation of components."
+```
 
 In Ruby, the stand alone access modifiers keywords are `private`, `protected` and `public`. They specify the level of access our methods have to the outside world. Until a class's access level is changed, all methods that fall below these stand alone modifiers have the same specified access. Let's look at these with some examples to see what this really means, and why it is important.
 
