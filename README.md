@@ -17,7 +17,7 @@ By default, every method in Ruby is `public`. Which is why we often do not see a
 This:
 
 ```ruby
-class ContructionWorker
+class ConstructionWorker
   def build_bridge
     # code that builds bridge
     "Bridge built!"
@@ -28,7 +28,7 @@ end
 is the same as this:
 
 ```ruby
-class ContructionWorker
+class ConstructionWorker
   public
 
   def build_bridge
@@ -41,13 +41,13 @@ end
 And both will successfully execute:
 
 ```ruby
-ContructionWorker.new.build_bridge #=> "Bridge built!"
+ConstructionWorker.new.build_bridge #=> "Bridge built!"
 ```
 
 When we specify private access using the stand alone `private` access modifier, we can no longer call `build_bridge` outside the context of the class.
 
 ```ruby
-class ContructionWorker
+class ConstructionWorker
   private
 
   def build_bridge
@@ -56,14 +56,14 @@ class ContructionWorker
   end
 end
 
-ContructionWorker.new.build_bridge #=> NoMethodError (private method `build_bridge' called for #<ContructionWorker:0x00007fb390842ab0>)
+ConstructionWorker.new.build_bridge #=> NoMethodError (private method `build_bridge' called for #<ConstructionWorker:0x00007fb390842ab0>)
 ```
 
 You maybe noticed I keep referring to these as "stand alone" modifiers. That is because there are alternative ways to specify access in Ruby. We can specify access to an instance method by passing the method name as a symbol:
 
 
 ```ruby
-class ContructionWorker
+class ConstructionWorker
   def build_bridge
     # code
     "Bridge built!"
@@ -71,22 +71,22 @@ class ContructionWorker
   private :build_bridge
 end
 
-ContructionWorker.new.build_bridge #=> NoMethodError (private method `build_bridge' called for #<ContructionWorker:0x00007fb392124cb8>)
+ConstructionWorker.new.build_bridge #=> NoMethodError (private method `build_bridge' called for #<ConstructionWorker:0x00007fb392124cb8>)
 ```
 
 The same is true for class methods. But stand alone accessor methods do not apply to class level methods unless the class scope has been opened up with `class << self`. These two examples successfully create private class methods:
 
 ```ruby
-class ContructionWorker
+class ConstructionWorker
   def self.standard_wage; end
   private_class_method :standard_wage
 end
 
-ContructionWorker.standard_wage #=> NoMethodError (private method `standard_wage' called for ContructionWorker:Class)
+ConstructionWorker.standard_wage #=> NoMethodError (private method `standard_wage' called for ConstructionWorker:Class)
 ```
 
 ```ruby
-class ContructionWorker
+class ConstructionWorker
   class << self
     private
 
@@ -94,13 +94,13 @@ class ContructionWorker
   end
 end
 
-ContructionWorker.standard_wage #=> NoMethodError (private method `standard_wage' called for ContructionWorker:Class)
+ConstructionWorker.standard_wage #=> NoMethodError (private method `standard_wage' called for ConstructionWorker:Class)
 ```
 
-However, this will not set private access, even though it looks like it should be valid. This is important to remember, as it is a common "gotcha" for Rubyists.
+This approach will not set private access, even though it looks like it should be valid. This is important to remember, as it is a common "gotcha" for Rubyists.
 
 ```ruby
-class ContructionWorker
+class ConstructionWorker
   private
 
   def self.standard_wage
@@ -108,8 +108,9 @@ class ContructionWorker
   end
 end
 
-ContructionWorker.standard_wage #=> "$20/hour"
+ConstructionWorker.standard_wage #=> "$20/hour"
 ```
+
 
 
 
