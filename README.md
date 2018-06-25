@@ -19,7 +19,6 @@ This:
 ```ruby
 class ConstructionWorker
   def build_bridge
-    # code that builds bridge
     "Bridge built!"
   end
 end
@@ -32,7 +31,6 @@ class ConstructionWorker
   public
 
   def build_bridge
-    # code that builds bridge
     "Bridge built!"
   end
 end
@@ -51,7 +49,6 @@ class ConstructionWorker
   private
 
   def build_bridge
-    # code
     "Bridge built!"
   end
 end
@@ -65,7 +62,6 @@ You maybe noticed I keep referring to these as "stand alone" modifiers. That is 
 ```ruby
 class ConstructionWorker
   def build_bridge
-    # code
     "Bridge built!"
   end
   private :build_bridge
@@ -125,7 +121,6 @@ class ConstructionWorker
     analyze_soil
     construct_pylons
     assemble_bridge
-    "Bridge built!"
   end
 
   private
@@ -150,12 +145,17 @@ end
 
 In the code above, `build_bridge` is publically accessible, but all of the methods that make building a bridge possible are private. This is because, for now, the only task we care about is building a bridge. We do not have any need for the worker to simply `analyze_soil`, nor any of it's other tasks in its private interface. Only within the class itself will this functionality be needed.
 
-Why is this helpful?
+### Why is this helpful?
 
-This makes it very clear what methods are safe to refactor, without worrying about breaking our application somewhere else. For example, if our `construction_worker` needs to start buying supplies from another vendor, that should not anything except building a bridge. Knowing that nowhere else relies on `ConstructionWorker#buy_supplies` means we can modify our code in confidence, as long as `build_bridge` still works properly.
+This makes it very clear what methods are safe to refactor, without worrying about breaking our application somewhere else. For example, if our `construction_worker` needs to start buying supplies from another vendor, that should not affect anything except for building a bridge. Knowing that nowhere else relies on `ConstructionWorker#buy_supplies` means we can modify our code in confidence, as long as `build_bridge` still works properly.
+
+### How do we know `build_bridge` still works properly?
+
+You guessed it. TESTS!
+
+Our tests for the `ConstructionWorker` class should focus entirely on `build_bridge`. Because `build_bridge` is the only accessible method from the outside.
 
 
-## Expose what should be tested, and what shouldn't
 
 ## Testing incoming and outgoing messages
 
