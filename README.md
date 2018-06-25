@@ -129,6 +129,10 @@ class Foo
 
   def private_method; end
 end
+
+Foo.new.public_method     #=> OK
+Foo.new.protected_method  #=> raises NoMethodError
+Foo.new.private_method    #=> raises NoMethodError
 ```
 
 For more details on `protected` methods, [read this informative blog post](http://nithinbekal.com/posts/ruby-protected-methods/). Take note that this access level is used considerable less than public and private, although it can be found in Nitro.
