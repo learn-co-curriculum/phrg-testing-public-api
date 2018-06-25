@@ -155,9 +155,9 @@ You guessed it. TESTS!
 
 Our tests for the `ConstructionWorker` class should focus entirely on `build_bridge`. Because `build_bridge` is the only accessible method from the outside.
 
+## Test Public Interface
 
-
-## Testing incoming and outgoing messages
+![Test Public Interface](https://raw.githubusercontent.com/powerhome/phrg-testing-public-api/master/testing_public_messages.jpg?raw=true "Test Public Interface")
 
 ## Easier to refactor and expand class
 
