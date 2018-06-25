@@ -153,14 +153,23 @@ This makes it very clear what methods are safe to refactor, without worrying abo
 
 You guessed it. TESTS!
 
-Our tests for the `ConstructionWorker` class should focus entirely on `build_bridge`. Because `build_bridge` is the only accessible method from the outside.
+Our tests for the `ConstructionWorker` class should focus entirely on `build_bridge`. Because `build_bridge` is the only publicly accessible method.
 
 ## Test Public Interface
 
 ![Test Public Interface](https://raw.githubusercontent.com/powerhome/phrg-testing-public-api/master/testing_public_messages.jpg?raw=true "Test Public Interface")
 
-## Easier to refactor and expand class
+The image above shows how an object should be tested. Private methods are an implementation detail that is hidden to the users of the class. Thus, they are kept below the dotted blue line. The tests for an object should focus on the messages it takes in and the messages it sends out, where "messages" are the bits of data the class processes.
 
+Futhermore, if the public interface of an object is well tested, then its private interface is *implicitly* tested. This gives developers confidence that when they refactor, their changes do not cause anything to break.
+
+### Refactoring
+
+One common argument to test a private method is that its functionality is crucial to an application. However, when someone feels strongly about the need to test a private method, its normally a sign that the logic should be refactored into its own class.
+
+For example, lets say our `ConstructionWorker` class had a lot of things to sort out to construct a pylon. Instead of leaving that logic in its private interface, it might be time to create a `Pylon` class. Then the `ConstructinoWorker` can access `Pylon`'s public interface to build a bridge. And the messages sent between `ConstructionWorker` and `Pylon` should be covered by tests.
+
+The same may be true for any of our private methods. `Supply` and `SoilAnalysis` classes could also be refactored out of `ConstructionWorker`. This type of refactoring is best accomplished using Test Driven Development, or TDD. TDD is a workflow that starts with writing a test, seeing it break, then writing the minimal code needed to get the test to pass. We will discuss TDD more in future lessons.
 
 Reference:
 
