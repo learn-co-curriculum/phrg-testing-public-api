@@ -107,8 +107,31 @@ end
 ConstructionWorker.standard_wage #=> "$20/hour"
 ```
 
-#### Add content on `protected`
+The `protected` access modifier works very similarly to the `private` modifier. `protected` methods can not be called outside of the class itself, just like private methods. However, public and protected methods can be called with an explicit recipient inside the class, while private methods cannot.
 
+That looks like this:
+
+```ruby
+class Foo
+  def bar
+    self.public_method     #=> OK
+    self.protected_method  #=> OK
+    self.private_method    #=> raises NoMethodError
+  end
+
+  def public_method; end
+
+  protected
+
+  def protected_method; end
+
+  private
+
+  def private_method; end
+end
+```
+
+For more details on `protected` methods, [read this informative blog post](http://nithinbekal.com/posts/ruby-protected-methods/). Take note that this access level is used considerable less than public and private, although it can be found in Nitro.
 
 ## When to Use Access Modifiers
 
@@ -147,21 +170,19 @@ In the code above, `build_bridge` is publically accessible, but all of the metho
 
 ### Why is this helpful?
 
-This makes it very clear what methods are safe to refactor, without worrying about breaking our application somewhere else. For example, if our `construction_worker` needs to start buying supplies from another vendor, that should not affect anything except for building a bridge. Knowing that nowhere else relies on `ConstructionWorker#buy_supplies` means we can modify our code in confidence, as long as `build_bridge` still works properly.
+This makes it very clear what methods are safe to alter, without worrying about breaking our application somewhere else. For example, if our `construction_worker` needs to start buying supplies from another vendor, that should not affect anything except for building a bridge. Knowing that nowhere else relies on `ConstructionWorker#buy_supplies` means we can modify our code in confidence, as long as `build_bridge` still works properly.
 
 ### How do we know `build_bridge` still works properly?
 
-You guessed it. TESTS!
-
-Our tests for the `ConstructionWorker` class should focus entirely on `build_bridge`. Because `build_bridge` is the only publicly accessible method.
+You guessed it. TESTS! Our tests for the `ConstructionWorker` class should focus entirely on `build_bridge`, because `build_bridge` is the only publicly accessible method in this class.
 
 ## Test Public Interface
 
 ![Test Public Interface](https://raw.githubusercontent.com/powerhome/phrg-testing-public-api/master/testing_public_messages.jpg?raw=true "Test Public Interface")
 
-The image above shows how an object should be tested. Private methods are an implementation detail that is hidden to the users of the class. Thus, they are kept below the dotted blue line. The tests for an object should focus on the messages it takes in and the messages it sends out, where "messages" are the bits of data the class processes.
+The image above shows how an object should be tested. Private methods are an implementation detail that is hidden to the users of the object. Thus, they are stored below the dotted blue line. The tests for an object should focus on the messages it takes in and the messages it sends out, where "messages" are the bits of data the class processes.
 
-Futhermore, if the public interface of an object is well tested, then its private interface is *implicitly* tested. This gives developers confidence that when they refactor, their changes do not cause anything to break.
+Futhermore, if the public interface of an object is well tested, then its private interface is *implicitly* tested as well. This gives developers confidence that when they refactor, their changes do not cause anything to break.
 
 ### Refactoring
 
@@ -171,8 +192,11 @@ For example, lets say our `ConstructionWorker` class had a lot of things to sort
 
 The same may be true for any of our private methods. `Supply` and `SoilAnalysis` classes could also be refactored out of `ConstructionWorker`. This type of refactoring is best accomplished using Test Driven Development, or TDD. TDD is a workflow that starts with writing a test, seeing it break, then writing the minimal code needed to get the test to pass. We will discuss TDD more in future lessons.
 
+
 Reference:
 
 [Wikipedia - Access Modifiers](https://en.wikipedia.org/wiki/Access_modifiers)
 
 [Declaring Visibility in Ruby Classes](https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes#Declaring_Visibility)
+
+[Ruby Protected Methods](http://nithinbekal.com/posts/ruby-protected-methods/)
