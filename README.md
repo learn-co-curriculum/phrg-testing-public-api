@@ -74,9 +74,7 @@ end
 ContructionWorker.new.build_bridge #=> NoMethodError (private method `build_bridge' called for #<ContructionWorker:0x00007fb392124cb8>)
 ```
 
-The same is true for class methods, although this uses different accessor methods. Stand alone accessor methods do not apply to class level methods.
-
-These two examples will successfully set a class method to private access:
+The same is true for class methods. But stand alone accessor methods do not apply to class level methods unless the class scope has been opened up with `class << self`. These two examples successfully create private class methods:
 
 ```ruby
 class ContructionWorker
@@ -99,7 +97,7 @@ end
 ContructionWorker.standard_wage #=> NoMethodError (private method `standard_wage' called for ContructionWorker:Class)
 ```
 
-However, this will not set private access, even though it looks like it should:
+However, this will not set private access, even though it looks like it should be valid. This is important to remember, as it is a common "gotcha" for Rubyists.
 
 ```ruby
 class ContructionWorker
