@@ -111,10 +111,49 @@ end
 ConstructionWorker.standard_wage #=> "$20/hour"
 ```
 
+#### Add content on `protected`
 
 
+## When to Use Access Modifiers
 
-## Two class example
+Let's take a look at a more flushed out `ConstructionWorker#build_bridge` implementation to find the value in modifying access.
+
+```ruby
+class ConstructionWorker
+  def build_bridge
+    buy_supplies
+    analyze_soil
+    construct_pylons
+    assemble_bridge
+    "Bridge built!"
+  end
+
+  private
+
+  def buy_supplies
+    # code accomplishing task
+  end
+
+  def analyze_soil
+    # code accomplishing task
+  end
+
+  def construct_pylons
+    # code accomplishing task
+  end
+
+  def assemble_bridge
+    # code accomplishing task
+  end
+end
+```
+
+In the code above, `build_bridge` is publically accessible, but all of the methods that make building a bridge possible are private. This is because, for now, the only task we care about is building a bridge. We do not have any need for the worker to simply `analyze_soil`, nor any of it's other tasks in its private interface. Only within the class itself will this functionality be needed.
+
+Why is this helpful?
+
+This makes it very clear what methods are safe to refactor, without worrying about breaking our application somewhere else. For example, if our `construction_worker` needs to start buying supplies from another vendor, that should not anything except building a bridge. Knowing that nowhere else relies on `ConstructionWorker#buy_supplies` means we can modify our code in confidence, as long as `build_bridge` still works properly.
+
 
 ## Expose what should be tested, and what shouldn't
 
