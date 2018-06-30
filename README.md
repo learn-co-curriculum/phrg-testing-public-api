@@ -184,7 +184,7 @@ You guessed it. TESTS! Our tests for the `ConstructionWorker` class should focus
 
 ![Test Public Interface](https://raw.githubusercontent.com/powerhome/phrg-testing-public-api/master/testing_public_messages.jpg?raw=true "Test Public Interface")
 
-The image above shows how an object should be tested. Private methods are an implementation detail that is hidden to the users of the object. Thus, they are stored below the dotted blue line. The tests for an object should focus on the messages it takes in and the messages it sends out, where "messages" are the bits of data the class processes.
+The image above is from Sandi Metz's 2013 Rails Conf talk, sharable under the [creative commons license](https://creativecommons.org/licenses/by-sa/3.0/us/legalcode). While this is not a summary of her presentation, the image shows how an object should be tested. Private methods are an implementation detail that is hidden to the users of the object. Thus, they are stored below the dotted blue line. The tests for an object should focus on the messages it takes in and the messages it sends out, where "messages" are the bits of data the class processes.
 
 Futhermore, if the public interface of an object is well tested, then its private interface is *implicitly* tested as well. This gives developers confidence that when they refactor, their changes do not cause anything to break.
 
