@@ -12,7 +12,7 @@ In Ruby, the stand alone access modifiers keywords are `private`, `protected` an
 
 ## Examples
 
-By default, every method in Ruby is `public`. Which is why we often do not see a stand alone `public` accesor modifier. 
+By default, every method in Ruby is `public`. Which is why we often do not see a stand alone `public` accessor modifier.
 
 This:
 
@@ -170,7 +170,7 @@ class ConstructionWorker
 end
 ```
 
-In the code above, `build_bridge` is publically accessible, but all of the methods that make building a bridge possible are private. This is because, for now, the only task we care about is building a bridge. We do not have any need for the worker to simply `analyze_soil`, nor any of it's other tasks in its private interface. Only within the class itself will this functionality be needed.
+In the code above, `build_bridge` is publicly accessible, but all of the methods that make building a bridge possible are private. This is because, for now, the only task we care about is building a bridge. We do not have any need for the worker to simply `analyze_soil`, nor any of it's other tasks in its private interface. Only within the class itself will this functionality be needed.
 
 ### Why is this helpful?
 
@@ -186,13 +186,13 @@ You guessed it. TESTS! Our tests for the `ConstructionWorker` class should focus
 
 The image above is from Sandi Metz's 2013 Rails Conf talk, sharable under the [creative commons license](https://creativecommons.org/licenses/by-sa/3.0/us/legalcode). While this is not a summary of her presentation, the image shows how an object should be tested. Private methods are an implementation detail that is hidden to the users of the object. Thus, they are stored below the dotted blue line. The tests for an object should focus on the messages it takes in and the messages it sends out, where "messages" are the bits of data the class processes.
 
-Futhermore, if the public interface of an object is well tested, then its private interface is *implicitly* tested as well. This gives developers confidence that when they refactor, their changes do not cause anything to break.
+Furthermore, if the public interface of an object is well tested, then its private interface is *implicitly* tested as well. This gives developers confidence that when they refactor, their changes do not cause anything to break.
 
 ### Refactoring
 
-One common argument to test a private method is that its functionality is crucial to an application. However, when someone feels strongly about the need to test a private method, its normally a sign that the logic should be refactored into its own class.
+One common argument to test a private method is that its functionality is crucial to an application. However, when someone feels strongly about the need to test a private method, it's normally a sign that the logic should be refactored into its own class.
 
-For example, lets say our `ConstructionWorker` class had a lot of things to sort out to construct a pylon. Instead of leaving that logic in its private interface, it might be time to create a `Pylon` class. Then the `ConstructionWorker` can access `Pylon`'s public interface to build a bridge. And the messages sent between `ConstructionWorker` and `Pylon` should be covered by tests.
+For example, let's say our `ConstructionWorker` class had a lot of things to sort out to construct a pylon. Instead of leaving that logic in its private interface, it might be time to create a `Pylon` class. Then the `ConstructionWorker` can access `Pylon`'s public interface to build a bridge. And the messages sent between `ConstructionWorker` and `Pylon` should be covered by tests.
 
 The same may be true for any of our private methods. `Supply` and `SoilAnalysis` classes could also be refactored out of `ConstructionWorker`. This type of refactoring is best accomplished using Test Driven Development, or TDD. TDD is a workflow that starts with writing a test, seeing it break, then writing the minimal code needed to get the test to pass. We will discuss TDD more in future lessons.
 
