@@ -201,3 +201,7 @@ The same may be true for any of our private methods. `Supply` and `SoilAnalysis`
 - [Wikipedia - Access Modifiers](https://en.wikipedia.org/wiki/Access_modifiers)
 - [Declaring Visibility in Ruby Classes](https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes#Declaring_Visibility)
 - [Ruby Protected Methods](http://nithinbekal.com/posts/ruby-protected-methods/)
+
+## Does this need an update?
+
+Please open a [pull-request](https://github.com/powerhome/phrg-testing-public-api/pulls). Provide a detailed description that explains the change you are proposing. Then "@" mention your instructor on the pull-request, and send them a link via Connect.
