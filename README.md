@@ -170,15 +170,15 @@ class ConstructionWorker
 end
 ```
 
-In the code above, `build_bridge` is publicly accessible, but all of the methods that make building a bridge possible are private. This is because, for now, the only task we care about is building a bridge. We do not have any need for the worker to simply `analyze_soil`, nor any of it's other tasks in its private interface. Only within the class itself will this functionality be needed.
+In the code above, `build_bridge` is publicly accessible, but all of the methods that make building a bridge possible are private. This is because, for now, the only task we care about is building a bridge. We do not have a need for the worker to simply `analyze_soil`, nor any of the other tasks marked private. Only within the class itself will this functionality be used.
 
 ### Why is this helpful?
 
-This makes it very clear what methods are safe to alter, without worrying about breaking our application somewhere else. For example, if our `construction_worker` needs to start buying supplies from another vendor, that should not affect anything except for building a bridge. Knowing that nowhere else relies on `ConstructionWorker#buy_supplies` means we can modify our code in confidence, as long as `build_bridge` still works properly.
+This makes it very clear what methods are safe to alter, without worrying about breaking our application somewhere else. For example, if our `construction_worker` needs to start buying supplies from another vendor, that should not affect anything except for building a bridge. Knowing that nowhere else relies on `ConstructionWorker#buy_supplies` means we can modify our code with confidence, as long as `build_bridge` still works properly.
 
 ### How do we know `build_bridge` still works properly?
 
-You guessed it. TESTS! Our tests for the `ConstructionWorker` class should focus entirely on `build_bridge`, because `build_bridge` is the only publicly accessible method in this class.
+You guessed it. TESTS! The tests for the `ConstructionWorker` class should focus entirely on `build_bridge`, because `build_bridge` is the only publicly accessible method in this class.
 
 ## Test Public Interface
 
